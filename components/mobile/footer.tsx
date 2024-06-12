@@ -1,29 +1,33 @@
 'use client';
 
-import {
-	Bolt,
-	Dumbbell,
-	Home,
-	Inbox,
-	MessageCircle,
-	icons,
-} from 'lucide-react';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import { AvatarFallback } from '@radix-ui/react-avatar';
 
+import FooterIcon from './footer-icon';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+
 export default function MobileFooter() {
-	const ICON_SIZE = 24;
+	const pathname = usePathname();
+
+	const options = [
+		{ id: '/', label: 'Activity' },
+		{ id: '/exercises', label: 'Workout' },
+		{ id: '/chat', label: 'Messages' },
+		{ id: '/inbox', label: 'Inbox' },
+	];
+
 	return (
-		<footer className='fixed bottom-0 left-0 z-10 flex items-center justify-center w-full h-20 lg:hidden p-8 bg-zinc-100'>
+		<footer className='fixed bottom-0 left-0 z-10 flex items-center justify-center w-full h-20 lg:hidden p-8 bg-backgroundSecondary'>
 			<div className='flex flex-row items-center justify-between w-full'>
-				<Bolt size={ICON_SIZE} className='text-red-500' />
-				<Dumbbell size={ICON_SIZE} className='text-gray-400' />
-				<MessageCircle size={ICON_SIZE} className='text-gray-400' />
-				<Inbox size={ICON_SIZE} className='text-gray-400' />
-				<Avatar className='w-auto h-10'>
-					<AvatarImage src='https://github.com/shadcn.png' />
-					<AvatarFallback>LN</AvatarFallback>
-				</Avatar>
+				{options.map((icon) => (
+					<Link key={icon.id} href={icon.id}>
+						<div className='flex flex-col items-center justify-center'>
+							<FooterIcon id={icon.id} isSelected={pathname === icon.id} />
+						</div>
+					</Link>
+				))}
 			</div>
 		</footer>
 	);
