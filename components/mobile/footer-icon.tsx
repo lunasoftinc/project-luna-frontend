@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Bolt, Dumbbell, Inbox, MessageCircle } from 'lucide-react';
+import { Bolt, Calendar, Dumbbell, Inbox, MessageCircle } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 interface IconProps {
@@ -40,6 +40,13 @@ export default function FooterIcon({ id, isSelected = false }: IconProps) {
 		case '/inbox':
 			return (
 				<Inbox
+					size={ICON_SIZE}
+					className={cn(isSelected ? selectedColor : defaultColor)}
+				/>
+			);
+		case '/calendar':
+			return (
+				<Calendar
 					size={ICON_SIZE}
 					className={cn(isSelected ? selectedColor : defaultColor)}
 				/>
