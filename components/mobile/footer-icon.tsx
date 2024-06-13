@@ -10,8 +10,8 @@ interface IconProps {
 }
 
 export default function FooterIcon({ id, isSelected = false }: IconProps) {
-	const selectedColor = 'text-red-400';
-	const defaultColor = 'text-gray-700';
+	const selectedColor = 'text-gray-700';
+	const defaultColor = 'text-gray-400';
 
 	const ICON_SIZE = 24;
 
